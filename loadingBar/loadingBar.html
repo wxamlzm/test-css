@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>loadingBar</title>
+        <style>
+            .loading-bar {
+                position: relative;
+                width: 500px;
+                height: 30px;
+                background-color: white;
+                border-radius: 12px;
+                -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+            }
+            .loading-bar::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                /* 默认角度是从上到下，90deg 逆时针旋转后变成从左到右渐变 */
+                background: linear-gradient(
+                    90deg,
+                    var(--gradient-color-1),
+                    var(--gradient-color-2),
+                    var(--gradient-color-3),
+                    var(--gradient-color-4),
+                    var(--gradient-color-1),
+                    var(--gradient-color-2),
+                    var(--gradient-color-3),
+                    var(--gradient-color-4),
+                    var(--gradient-color-1)
+                );
+                background-size: 200%;
+                border-radius: 12px;
+                animation: flow 3s linear infinite;
+            }
+            /* 是一个和::before 相同的作为霓虹灯特效 */
+            .loading-bar::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(
+                    90deg,
+                    var(--gradient-color-1),
+                    var(--gradient-color-2),
+                    var(--gradient-color-3),
+                    var(--gradient-color-4),
+                    var(--gradient-color-1),
+                    var(--gradient-color-2),
+                    var(--gradient-color-3),
+                    var(--gradient-color-4),
+                    var(--gradient-color-1)
+                );
+                background-color: 200%;
+                filter: blur(10px);
+                border-radius: 12px;
+                animation: flow 3s linear infinite;
+            }
+            :root {
+                --gradient-color-1: #b983ff;
+                --gradient-color-2: #94b3fd;
+                --gradient-color-3: #94daff;
+                --gradient-color-4: #99feff;
+            }
+
+            @keyframes flow {
+                0% {
+                    background-position: 0 0;
+                }
+                0% {
+                    background-position: 200% 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="loading-bar"></div>
+    </body>
+</html>
